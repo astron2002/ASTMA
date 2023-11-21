@@ -1,0 +1,42 @@
+Web indexing
+
+Bing Indexing API
+Bing Indexing API can be used with an API key that needs to be introduced as a parameter. This API key can be obtained on Bing Webmaster Tools, going to the API access section and after that, generating the API key.
+
+https://learn.microsoft.com/en-us/bingwebmaster/getting-access
+
+
+
+API key can be generated from Bing Webmaster Tools by following the steps below:
+
+1.Sign in to your account on Bing Webmaster Tools. In case you do not already have a Bing Webmaster account, sign up today using any Microsoft, Google or Facebook ID.
+https://www.bing.com/webmasters
+2.Add and verify the site that you want to get information for through the APIs, if not already done.
+3.Click on Settings button on top right corner and then go to API Access section.
+4.If you are using API Access?for the first time, please read and accept the Terms and Conditions displayed and then click on API Key.?
+Click on Generate API Key to create an API Key. Only one API key can be generated per user.
+
+
+Once the API key has been gotten, we can play around with the API with the following piece of code (you would only need to add your API key and your site URL):
+
+Code:
+
+import requests 
+list_urls = ["https://www.example.com", "https://www.example/test2/"]
+for y in list_urls:
+    url = 'https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=yourapikey'
+    myobj = '{"siteUrl":"https://www.example.com", "urlList":["'+ str(y) +'"]}'
+    headers = {'Content-type': 'application/json; charset=utf-8'}
+    x = requests.post(url, data=myobj, headers=headers)
+    print(str(y) + ": " + str(x))
+ 
+
+API key: 6575e7e571ab4f108ab2de7033704dcc
+
+This will print the URL and its response code on each iteration. In contrast to Google Indexing API, this API can be used for any sort of website.
+
+
+
+Reference:
+
+https://www.oncrawl.com/technical-seo/crawling-indexation-python/
